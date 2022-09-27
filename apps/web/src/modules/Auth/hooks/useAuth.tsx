@@ -32,7 +32,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState<string>(cookies['token']);
   const [user, setUser] = useState<IUser>({} as IUser);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const toast = useToast()
+  const toast = useToast();
 
   function logout() {
     destroyCookie(undefined, 'token');

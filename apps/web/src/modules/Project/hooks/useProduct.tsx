@@ -6,7 +6,7 @@ import { useToast } from '@chakra-ui/react';
 export function useProduct() {
   const [projects, setProjects] = useState<IProject[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const toast = useToast()
+  const toast = useToast();
 
   async function fetchProjects() {
     try {

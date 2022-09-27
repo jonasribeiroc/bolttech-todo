@@ -1,6 +1,7 @@
 import { Box, Button, Heading, Input, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
 import { CreateProjectDto } from '../../models';
+import { useToast } from '@chakra-ui/react';
 
 interface IFormProps {
   isLoading: boolean;
@@ -11,11 +12,16 @@ export function AddProjectForm({
   onSubmit,
   isLoading,
 }: IFormProps) {
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>('');
+  const toast = useToast();
 
   const handleSubmit = () => {
-    onSubmit({ name: value });
-    setValue('');
+    if (value.length >= 3) {
+      onSubmit({ name: value });
+      setValue('');
+    } else {
+      toast({ title: 'Project name must to have 3 or more chars.', status: 'error' });
+    }
   }
 
   return (

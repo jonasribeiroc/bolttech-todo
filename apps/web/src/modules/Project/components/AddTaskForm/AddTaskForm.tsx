@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input } from '@chakra-ui/react';
+import { Box, Button, Flex, Input, useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 import { CreateTaskDto } from '../../models';
 
@@ -11,11 +11,16 @@ export function AddTaskForm({
   isLoading,
   onSubmit,
 }: IFormProps) {
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>('');
+  const toast = useToast();
 
   const handleSubmit = () => {
-    onSubmit({ name: value });
-    setValue('');
+    if (value.length >= 3) {
+      onSubmit({ name: value });
+      setValue('');
+    } else {
+      toast({ title: 'Task name must to have 3 or more chars.', status: 'error' });
+    };
   }
 
   return (
