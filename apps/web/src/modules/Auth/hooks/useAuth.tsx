@@ -42,7 +42,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const dataToken = await login(data);
       setToken(dataToken);
 
-      navigate('/projects');
+      navigate('/projects', { replace: true });
     } catch (error) {
       console.log('ERROR!', error);
     }
