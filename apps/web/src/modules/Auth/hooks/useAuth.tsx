@@ -46,7 +46,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setToken(dataToken);
       navigate('/projects');
     } catch (error: any) {
-      toast({ title: error.response.data.message, status: 'error' });
+      toast({ title: error?.response?.data?.message, status: 'error' });
     }
   }
 
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       navigate('/projects');
       toast({ title: 'Account created.', status: 'success' });
     } catch (error: any) {
-      toast({ title: error.response.data.message, status: 'error' });
+      toast({ title: error?.response?.data?.message, status: 'error' });
     }
   }
 
