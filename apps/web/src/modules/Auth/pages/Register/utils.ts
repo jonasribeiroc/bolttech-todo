@@ -2,9 +2,6 @@ import * as yup from 'yup';
 
 export const registerValidationSchema = yup
   .object({
-    cpf: yup
-      .string()
-      .required('CPF é obrigatório'),
     password: yup
       .string()
       .required('Senha é obrigatória')

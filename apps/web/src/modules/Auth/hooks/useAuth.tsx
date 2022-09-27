@@ -45,17 +45,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const dataToken = await login(data);
       setToken(dataToken);
       navigate('/projects');
-    } catch (error) {
-      console.log('ERROR!', error);
+    } catch (error: any) {
+      toast({ title: error.response.data.message, status: 'error' });
     }
   }
 
   async function signUp(data: RegisterAuthDTO) {
     try {
-      await register(data);
+      const dataToken = await register(data);
+      setToken(dataToken);
+      navigate('/projects');
       toast({ title: 'Account created.', status: 'success' });
-    } catch (error) {
-      console.log('ERROR!', error);
+    } catch (error: any) {
+      toast({ title: error.response.data.message, status: 'error' });
     }
   }
 
