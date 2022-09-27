@@ -49,10 +49,10 @@ export function useProduct() {
     try {
       const task = await postTask(projectId, data);
       
-      const index = projects?.findIndex(item => item._id === projectId);
+      const index = projects.findIndex(item => item._id === projectId);
       const dataProjects = [...projects];
       dataProjects[index].tasks.push(task);
-      setProjects(dataProjects)
+      setProjects(dataProjects);
     } catch (error) {
       console.log('ERROR!', error);
     }
@@ -62,11 +62,11 @@ export function useProduct() {
     try {
       await putTask(id, projectId, data);
 
-      const index = projects?.findIndex(item => item._id === projectId);
+      const indexP = projects.findIndex(item => item._id === projectId);
+      const indexT = projects[indexP].tasks.findIndex(item => item._id === id);
       const dataProjects = [...projects];
-      dataProjects[index].tasks = dataProjects[index].tasks.filter(item => item._id !== id);
-      console.log(dataProjects[index].tasks)
-      setProjects([...dataProjects])
+      dataProjects[indexP].tasks[indexT].done = data.done || dataProjects[indexP].tasks[indexT].done;
+      setProjects([...dataProjects]);
     } catch (error) {
       console.log('ERROR!', error);
     }

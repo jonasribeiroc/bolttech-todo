@@ -60,9 +60,9 @@ export function ProjectCard({
           <Heading as='h5' size='sm' m={2}>
             ToDo
           </Heading>
-          {data?.tasks.filter(t => !t.done).map((task, i) => (
+          {data?.tasks.filter(t => !t.done).map((task) => (
             <TaskItem
-              key={i}
+              key={task._id}
               data={task}
               onUpdate={(id, task) => onUpdateTask(id, data._id, task)}
               onDelete={(id) => onDeleteTask(id, data._id)}
@@ -77,8 +77,8 @@ export function ProjectCard({
           <Heading as='h5' size='sm' m={2}>
             Done
           </Heading>
-          {data?.tasks.filter(t => t.done).map((task, i) => (
-            <TaskItem key={i} data={task} />
+          {data?.tasks.filter(t => t.done).map((task) => (
+            <TaskItem key={task._id} data={task} />
           ))}
           {!data?.tasks.filter(t => t.done).length && (<Text p={2}>No items</Text>)}
         </Box>

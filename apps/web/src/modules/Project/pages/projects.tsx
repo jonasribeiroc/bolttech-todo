@@ -38,9 +38,9 @@ export function Projects() {
 
   return (
     <Flex p={4} alignItems={'flex-start'} overflowY={'auto'}>
-      {projects.map((project, i) => (
+      {projects.map((project) => (
         <ProjectCard
-          key={i}
+          key={project._id}
           data={project}
           onUpdateProject={handleUpdateProject}
           onDeleteProject={handleRemoveProject}
