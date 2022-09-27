@@ -82,7 +82,6 @@ export function useProduct() {
       const index = projects?.findIndex(item => item._id === projectId);
       const dataProjects = [...projects];
       dataProjects[index].tasks = dataProjects[index].tasks.filter(item => item._id !== id);
-      console.log(dataProjects[index].tasks)
       setProjects([...dataProjects]);
       toast({ title: 'Task removed.', status: 'success' });
     } catch (error) {
