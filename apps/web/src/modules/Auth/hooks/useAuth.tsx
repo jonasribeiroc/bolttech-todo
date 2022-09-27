@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router';
 import { login, register} from '@src/modules/Auth/api';
 import { IUser, LoginAuthDTO, RegisterAuthDTO } from '@src/modules/Auth/models';
 import jwtDecode from 'jwt-decode';
+import { useToast } from '@chakra-ui/react';
 
 export type AuthContextData = {
   signIn: (credentials: LoginAuthDTO) => Promise<void>;
@@ -31,6 +32,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState<string>(cookies['token']);
   const [user, setUser] = useState<IUser>({} as IUser);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const toast = useToast()
 
   function logout() {
     destroyCookie(undefined, 'token');
@@ -42,7 +44,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       const dataToken = await login(data);
       setToken(dataToken);
-
       navigate('/projects');
     } catch (error) {
       console.log('ERROR!', error);
@@ -52,6 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   async function signUp(data: RegisterAuthDTO) {
     try {
       await register(data);
+      toast({ title: 'Account created.', status: 'success' });
     } catch (error) {
       console.log('ERROR!', error);
     }
