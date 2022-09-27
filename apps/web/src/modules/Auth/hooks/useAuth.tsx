@@ -34,6 +34,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   function logout() {
     destroyCookie(undefined, 'token');
+    setIsAuthenticated(false);
     navigate('/');
   }
 
@@ -42,7 +43,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const dataToken = await login(data);
       setToken(dataToken);
 
-      navigate('/projects', { replace: true });
+      navigate('/projects');
     } catch (error) {
       console.log('ERROR!', error);
     }
@@ -68,6 +69,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setIsAuthenticated(true);
     }
   }, [token]);
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/projects')
+  }, [isAuthenticated, navigate]);
 
   return (
     <AuthContext.Provider

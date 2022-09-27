@@ -12,6 +12,7 @@ const createAxiosInstance = (config?: AxiosRequestConfig) => {
   });
 
   newInstance.interceptors.request.use(function (config) {
+    const cookies = parseCookies();
     config.headers.Authorization = `Bearer ${cookies['token']}`;
 
     return config;
