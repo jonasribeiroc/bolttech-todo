@@ -21,7 +21,7 @@ export function Header({ ...props }) {
   return (
     <Box bg={bg} w="full" px={6} py={4} shadow="md" {...props}>
       <Flex align="center" justify="space-between">
-        <Link as={RouterLink} to="/dashboard" href="/" title="Bolttech ToDo">
+        <Link as={RouterLink} to="/projects" href="/" title="Bolttech ToDo">
           <Image
             src={imagens.LOGO}
             alt="Bolttech ToDo"
